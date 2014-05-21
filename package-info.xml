@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE package-info SYSTEM "http://www.hippoedit.com/xml/package-info">
+<package-info xmlns="http://www.hippoedit.com/xml/package-info" xmlns:smf="http://www.hippoedit.com/">
+	<id>87A4F76A-221B-44AE-8F36-5B9E01C2218A</id>
+	<name>JSHint</name>
+	<version>2.0</version>
+	<description>JSHint wrapper for HippoEDIT</description>
+	<author>HippoEDIT.com</author>
+	<email>supportbox@hippoedit.com</email>
+	<homepage>http://wiki.hippoedit.com/plugins/jshint</homepage>
+	<memo></memo>
+	<install>
+		<readme type="inline">This will install JSHint plugin for HippoEDIT.</readme>
+		<require-file name="jshint.js" destination="%{plugins}%/jshint/jshint.js" />
+		<require-file name="jshint.hejs" destination="%{plugins}%/jshint/jshint.hejs" />
+		<install-plugin path="%{plugins}%/jshint/jshint.hejs"/>
+	</install>
+	<uninstall>
+		<readme type="inline">This will uninstall JSHint plugin for HippoEDIT.</readme>
+		<uninstall-plugin id="87A4F76A-221B-44AE-8F36-5B9E01C2218A"/>
+		<remove-file name="%{plugins}%/jshint/jshint.hejs" />
+		<remove-file name="%{plugins}%/jshint/jshint.js" />
+		<remove-dir name="%{plugins}%/jshint" />
+	</uninstall>
+</package-info>

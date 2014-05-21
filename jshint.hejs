@@ -1,0 +1,263 @@
+#import "es5.js" 
+#import "he_edit.hejs"
+
+// Up to date JSHint code can be downloaded from here: http://www.jshint.com/install
+
+Application.AddScriptInfo("87A4F76A-221B-44AE-8F36-5B9E01C2218A", "JSHint", "2.0", "JSHint wrapper for HippoEDIT", "HippoEDIT.com", "supportbox@hippoedit.com", "http://wiki.hippoedit.com/plugins/jshint");
+
+var nJSHint = Application.RegisterImageString(
+'iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAYFBMVEUqLkAtMUA1N0FRT0NZVkRcWERN\
+ TENrZUVzbEZ7ckaFe0iTh0mfkUqklUq2pEzGsk3YwU/cxVDs0VD22lH33lL43FD53FL63VH43FT43Fb6\
+ 3VX421H53Vn941P/6Fb+6lMUM4BWAAAACXBIWXMAABYkAAAWJAGbFcYUAAAAwUlEQVQYGQXBjU7CMBSG\
+ 4ffraQtjC4uLYGO4/ytTZmKiwSg/pYf5PDo0IDZig9iIKg4A5JormIqbZ6DmmnFfqTiGY25uDqbimQoA\
+ YOYqbp7duIbMlWAqDtktcO71oErFMSf8ajrdllWX9NrA2Rzj/qj4GHrtBKQwp2nunv8UVeyOs5njy+c5\
+ dWNTWRaU+bBd+L7ct6OK1XBftu9xvDzxlvYqVtdfl3wb7BTjtZ9UPFe/tdStf+qShkWHBklQSYIa/wH2\
+ oVK5tEFKFAAAAABJRU5ErkJggg==');
+
+var nCheckOne = Application.RegisterImageString(
+'iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFn\
+ ZVJlYWR5ccllPAAAAapJREFUeNpi/P//PwMlgPF/Acl6WIBYi6H//yUQh4kEjYJAPB+I3wHxEYZCxj2k\
+ uEAFiLcAsRQDEzOQ1GdieHLuH5BvQ4wLtID4KFizbiALQ90jHgZRVZg+JRjDHojnAvE1KO0IFVcH4kNA\
+ zMlgkczKEL+Ck2F9/g+G8yv/AMXeAPFxFqjmzUg2hkJxLRBHADEbg2UaK0PYTA6GlSk/GC6uAWl+CXI+\
+ MCBfglxgCdbm2cTGUP+Ym8GrhR1qUDMQazMo2zEzhEzjYNjb8YvhxNzfQLHvINUgzbAoOQ5Wvr3uF8P3\
+ DwwM/r3sDNIGTAwLQr8zsPMyMsSv4mS4d/gvw7aan1CDo4Ga7yDH6UEg9gV740DfLwYuIUYG12o2hsw9\
+ XAx/fvxn4BJkZFiV/oPh318GaDTuQU8UDFBD/IF4I9gmkLOVbJnBMmcW/2Z4fesfVE0+ehQhR+N+IO4G\
+ szaV/YSLHpn2G8pajS2O0dMBKOAuMDw88Zfhxo4/DK9u/AOzGRhuAPEiXOkaHWwAYgOGmZ7fkcSO48sY\
+ 6KAPSlsBsRxUcyHu3EhhdgYIMADkeX+XJGOGKQAAAABJRU5ErkJggg==');
+
+var nCheckAll = Application.RegisterImageString(
+'iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAA3NCSVQICAjb4U/gAAAAmVBMVEX/////\
+ cQL/cQL/cQL/cQL/cQL/cQL/cQL/cQL/cQL/cQL/cQL/cQL/oVf/nVH/kjz/jzj/jDL/hyn/fRj/dAf/\
+ cQL//////Pn/8+j/8OX/7uH/6df/3sX/3MD/2Lr/1rX/yp//u4X/uIH/t37/rGv/qWb/p2P/m07/lkT/\
+ kjz/jzj/iCv/hyn/gh//fRj/eQ//dw3/dAf/cQJEhnmLAAAAM3RSTlMAESIzRFVmd5mqu8zd7u7u7u7u\
+ 7u7u///////////////////////////////////////l13pDAAAACXBIWXMAAAsSAAALEgHS3X78AAAA\
+ HHRFWHRTb2Z0d2FyZQBBZG9iZSBGaXJld29ya3MgQ1M1cbXjNgAAAKVJREFUGJVNj9sOgjAQRAtWqFy8\
+ TwEBEURUVCj7/x9nSzQwbzPJyZ5l7B9LAB6bYgfADoupA+skxJIxLgLBTW/iD5FmYOL6uKU9kWFQJaWe\
+ Nqmi+8gAr/fjeMh6aqIQgcUcokGpuqVGNqYzF9dTqdTwjDRp63scVMui6+Ic4KOBXiqZnaM9xM+JE+VS\
+ XmbeLrVSbuFMf3goUvizx1xjK9h8Wfn//gXoeA/QZ7qZpgAAAABJRU5ErkJggg==');
+
+var nSettings = Application.RegisterImageString(
+'iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFn\
+ ZVJlYWR5ccllPAAAAKNJREFUeNpi/P//PwMGKGTUApL9QGwJFTkOEmXo/38NXSkTEZoZoOx+qBwKYAS7\
+ AFUTJxAzg2X7/zNCDYU58y8Qf0d2EcwFyDaiakZlM6O4CMkFn6AKeRlmuDMwPDjOgBUoAPVl7ASp/wxV\
+ z4cZBoH9EIXYNAf2YwizYIiIa0FsIRIwMVAIRg0YDAawIOU2S3gKIw4cR3ZBIUyABM0gPQwAAQYARqEz\
+ BeV4fRUAAAAASUVORK5CYII=');
+
+function prepareList() {
+	var list = Application.List("JSHint");
+	if (!list.ColumnCount) {
+		list.Image = nJSHint;
+		list.AddColumn("N", eAlignmentLeft, 3);
+		list.AddColumn("Reason", eAlignmentLeft, 40);
+		list.AddColumn("Location");
+		list.AddColumn("Line");
+		list.AddColumn("Position");
+		list.AddColumn("Context");
+		
+		list.ToolBar.AddButton(); // add separator, between our and standard entries
+		list.ToolBar.AddButton(vCheckCurrentDocument);
+		list.ToolBar.AddButton(vCheckAllDocuments);
+		list.ToolBar.AddButton(); // add separator, between our and standard entries
+		list.ToolBar.AddButton(vSettings);
+	}
+			
+	list.Clear();
+	return list; 
+}
+
+function copyStorage(storage) {	
+
+	var o = {};
+	if ( storage && storage.Values )
+	{
+		var values = ax2js(storage.Values);
+		for (var i = 1; i < values.length; i++)
+		{
+			if ( values[i].Name == "globals" ) {
+				o.predef = values[i].Value.split(', ');
+			} else if ( values[i].Name == "additional_opt" ) {
+				var properties = values[i].Value.split(', ');
+				for (var y = 0; y < properties.length; y++){
+					var tup = properties[y].split(':');
+					o[tup[0].trim()] = tup[1].trim();		
+				}
+			} else {
+				o[values[i].Name] = values[i].Value;
+			}
+		}	
+	}
+
+	return o;
+}
+
+function checkDocument(list, doc) {
+	if (__include("jshint.js") && __include("he_utils.js")) {
+		var lines = ax2js(doc.GetLines(null, false));
+		if (!JSHINT(lines, copyStorage(GetStorage(eStorageTypeWorkspace, "", eAccessTypeRead)))) {
+			var fileTitle = doc.Title;
+			for (var i = 0; i < JSHINT.errors.length; i++) {
+				if (JSHINT.errors[i] !== null && JSHINT.errors[i].line !== null) {
+					var item = list.Add(false, -2, i, JSHINT.errors[i].reason, fileTitle, JSHINT.errors[i].line, JSHINT.errors[i].character, JSHINT.errors[i].evidence);
+					item.file = doc.Path;
+					item.line = JSHINT.errors[i].line - 1;
+					item.pos = JSHINT.errors[i].character;
+				}
+			}
+			return JSHINT.errors.length;
+		} else {
+			return 0;
+		}
+	}
+	return -1;
+}
+
+var vCheckCurrentDocument = new Command("JSHint.CheckDocument", "Check Document", "Check current document or scope", nCheckOne);
+vCheckCurrentDocument.onExecute = function() {	
+	var result = checkDocument(prepareList(), ActiveDocument);
+	if ( !result ) { status("JSHint found no errors!", eMessageTypeInfo); }
+	else if (result) { status("JSHint found warnings!", eMessageTypeWarning); }
+};
+
+vCheckCurrentDocument.onEnabled = function() {
+	return ActiveDocument !== null && (ActiveDocument.Syntax.IsInheritedFrom("js") || CurrentSyntax().IsInheritedFrom("js"));
+};
+
+var vCheckAllDocuments = new Command("JSHint.CheckAll", "Check All", "Check all open documents", nCheckAll);
+vCheckAllDocuments.onExecute = function() {
+	var aDocuments = Application.Documents;
+	var result = 0;
+	if ( aDocuments.length ) {
+		var list = prepareList();
+		for (var i = 1; i <= aDocuments.length; i++) {
+			result += checkDocument(list, aDocuments[i]);
+		}			
+	}
+	if ( !result ) { status("JSHint found no errors!", eMessageTypeInfo); }
+	else if (result) { status("JSHint found warnings!", eMessageTypeWarning); }
+};
+
+var vSettings = new Command("JSHint.Settings", "Settings", "Open JSHint settings dialog", nSettings, function() {
+	ShowOptions("JSHint");
+});
+
+function onOptionsInit()
+{
+	// read "setting" from persistent storage
+	var storage = GetStorage(eStorageTypeWorkspace, "", eAccessTypeRead);
+	if ( storage ) this.Parameters.Copy(storage);
+
+	this.Layout =
+	'@<dialog> \
+		<tabcontrol selected="0" vstretch="true"> \
+			<tab title="Warn if"> \
+				<paragraph text="These options tell JSHint to be more strict towards your code."/> \
+				<spacer/> \
+				<sectionbreak/> \
+				<checkbox title="Blocks omit {}" id="curly"/> \
+				<checkbox title="Empty blocks" id="noempty"/> \
+				<checkbox title="Unsafe for..in" id="forin"/> \
+				<checkbox title="Unsafe comparisons" id="eqeqeq"/> \
+				<checkbox title="Unsafe . in regexp" id="regexp"/> \
+				<checkbox title="Use before define" id="latedef"/> \
+				<checkbox title="Unary in(de)crement" id="plusplus"/> \
+				<checkbox title="Variable is not used" id="unused"/> \
+				<checkbox title="Trailing Whitespace" id="trailing"/> \
+				<columnbreak/> \
+				<checkbox title="Bitwise operators are used" id="bitwise"/> \
+				<checkbox title="New is used for side effects" id="nonew"/> \
+				<checkbox title="arguments.caller and .callee" id="noarg"/> \
+				<checkbox title="Not Capitalize constructor" id="newcap"/> \
+				<checkbox title="Code is not in strict mode" id="strict"/> \
+				<checkbox title="Variable not in camelCase" id="camelcase"/> \
+				<checkbox title="Variable is undefined" id="undef"/> \
+			</tab> \
+			<tab title="Do not warn about"> \
+				<paragraph text="These options allow you to suppress certain types of warnings."/> \
+				<spacer/> \
+				<sectionbreak/> \
+				<checkbox title="Debugging code" id="debug"/> \
+				<checkbox title="eval" id="evil"/> \
+				<checkbox title="== null" id="eqnull"/> \
+				<checkbox title="Missing semicolons" id="asi"/> \
+				<checkbox title="Comma-first style" id="laxcomma"/> \
+				<checkbox title="Unsafe line breaks" id="laxbreak"/> \
+				<checkbox title="Global strict mode" id="globalstrict"/> \
+				<checkbox title="Switch with one case" id="onecase"/> \
+				<checkbox title="Unescaped - in regexp" id="regexdash"/> \
+				<columnbreak/> \
+				<checkbox title="Assignments inside if/for/..." id="boss"/> \
+				<checkbox title="Functions inside loops" id="loopfunc"/> \
+				<checkbox title="Mixed tabs and spaces" id="smarttabs"/> \
+				<checkbox title="Expressions vs Assignments" id="expr"/> \
+				<checkbox title="Declaring variables in scope" id="funcscope"/> \
+				<checkbox title="Script-targeted URLs" id="shadow"/> \
+				<checkbox title="Multi-line strings" id="multistr"/> \
+				<checkbox title="Variable shadowing" id="scripturl"/> \
+				<checkbox title="&quot;Weird&quot; constructions" id="supernew"/> \
+			</tab> \
+			<tab title="Environments"> \
+				<paragraph text="These options pre-define global variables that are exposed\nby popular JavaScript libraries and runtime environments"/> \
+				<spacer/> \
+				<sectionbreak/> \
+				<checkbox title="Browser" id="browser"/> \
+				<checkbox title="jQuery" id="jquery"/> \
+				<checkbox title="EcmaScript 5" id="es5"/> \
+				<checkbox title="NodeJS" id="node"/> \
+				<checkbox title="CouchDB" id="couch"/> \
+				<checkbox title="Dojo Toolkit" id="dojo"/> \
+				<checkbox title="MooTools" id="mootools"/> \
+				<checkbox title="Rhino" id="rhino"/> \
+				<columnbreak/> \
+				<checkbox title="Prototype" id="prototypejs"/> \
+				<checkbox title="Web Workers" id="worker"/> \
+				<checkbox title="YUI" id="yui"/> \
+				<checkbox title="Windows Script Host" id="wsh"/> \
+				<checkbox title="Development (console, etc.)" id="devel"/> \
+				<checkbox title="Non-standard globals" id="nonstandard"/> \
+			</tab> \
+			<tab title="Advanced"> \
+				<paragraph text="Here you can provide additional options, not available in UI\nand define globals you need."/> \
+				<spacer/> \
+				<paragraph text="Predefined global variables (separated by ,):" align="left"/> \
+				<edit id="globals" style="multiline|wordwrap|wantreturn|vscroll" minheight="3"/> \
+				<paragraph text="Additional options (as &quot;a : true, b : false&quot;):"/> \
+				<edit id="additional_opt" style="multiline|wordwrap|wantreturn|vscroll" minheight="3"/> \
+			</tab> \
+		</tabcontrol> \
+	</dialog>@';
+}
+
+function onOptionsApply()
+{
+	// store new "setting" value in persistent storage
+	GetStorage(eStorageTypeWorkspace, "", eAccessTypeWrite).Copy(this.Parameters);
+}
+
+function onOptionsContextHelp(varID)
+{
+	return "JSHInt => '" + varID + "'";
+}
+
+Application.RegisterOptionsPage("JSHint", onOptionsInit, onOptionsApply, onOptionsContextHelp);
+
+Application.onListDoubleClick = function(item) {
+	if (this == Application.List("JSHint")) {
+		Navigate(item.file, item.line, item.pos);
+	}
+};
+
+// register the command as global, to be able assign shortcuts to it
+Application.RegisterCommand(vCheckCurrentDocument);
+Application.RegisterCommand(vCheckAllDocuments);
+Application.RegisterCommand(vSettings);
+
+////////////////////////////////////////////////////////////////////////
+// Initialize JSHint Toolbar
+Application.onInitToolbars = function() {
+	var MyToolbar = this.GetToolBar("JSHint", true);
+	MyToolbar.Name = "JSHint";
+	MyToolbar.AddButton(vCheckCurrentDocument);
+	MyToolbar.AddButton(vCheckAllDocuments);
+	MyToolbar.AddButton();
+	MyToolbar.AddButton(vSettings);
+};
