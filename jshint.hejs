@@ -3,7 +3,7 @@
 
 // Up to date JSHint code can be downloaded from here: http://www.jshint.com/install
 
-Application.AddScriptInfo("87A4F76A-221B-44AE-8F36-5B9E01C2218A", "JSHint", "2.0", "JSHint wrapper for HippoEDIT", "HippoEDIT.com", "supportbox@hippoedit.com", "http://wiki.hippoedit.com/plugins/jshint");
+Application.AddScriptInfo("87A4F76A-221B-44AE-8F36-5B9E01C2218A", "JSHint", "2.1", "JSHint wrapper for HippoEDIT", "HippoEDIT.com", "supportbox@hippoedit.com", "http://wiki.hippoedit.com/plugins/jshint");
 
 var nJSHint = Application.RegisterImageString(
 'iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAYFBMVEUqLkAtMUA1N0FRT0NZVkRcWERN\
